@@ -4,23 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marco Predovic - Product Strategist & AI Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #64748b;
-            --background: #0f172a;
-            --surface: #1e293b;
-            --surface-light: #334155;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-            --accent: #06b6d4;
-            --success: #10b981;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --glass: rgba(255, 255, 255, 0.05);
-            --border: rgba(255, 255, 255, 0.1);
+            --primary-gold: #FFD700;
+            --gold-light: #FFF8DC;
+            --gold-dark: #B8860B;
+            --black: #000000;
+            --black-light: #1a1a1a;
+            --black-medium: #2d2d2d;
+            --white: #ffffff;
+            --text-light: #cccccc;
+            --text-medium: #999999;
+            --border: #333333;
+            --accent: #FFD700;
+            --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            --shadow: 0 8px 32px rgba(255, 215, 0, 0.15);
         }
 
         * {
@@ -30,40 +29,29 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
             line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--background);
             overflow-x: hidden;
-        }
-
-        .background-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(120, 200, 255, 0.1) 0%, transparent 50%);
-            z-index: -1;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 2rem;
         }
 
+        /* Header */
         header {
             position: fixed;
-            width: 100%;
             top: 0;
-            z-index: 1000;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
-            background: rgba(15, 23, 42, 0.8);
             border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         nav {
@@ -74,9 +62,9 @@
         }
 
         .logo {
-            font-size: 1.75rem;
-            font-weight: 700;
-            background: var(--gradient);
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-gold);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -85,14 +73,14 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2.5rem;
+            gap: 3rem;
         }
 
         .nav-link {
+            color: var(--text-light);
             text-decoration: none;
-            color: var(--text-secondary);
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
             position: relative;
             cursor: pointer;
@@ -102,347 +90,315 @@
             content: '';
             position: absolute;
             bottom: -8px;
-            left: 50%;
+            left: 0;
             width: 0;
             height: 2px;
-            background: var(--gradient);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
+            background: var(--primary-gold);
+            transition: width 0.3s ease;
         }
 
         .nav-link:hover,
         .nav-link.active {
-            color: var(--text-primary);
+            color: var(--primary-gold);
         }
 
         .nav-link.active::after {
             width: 100%;
         }
 
+        /* Main Content */
         main {
             margin-top: 100px;
-            padding: 2rem 0;
         }
 
         .section {
             display: none;
-            padding: 3rem 0;
+            min-height: calc(100vh - 100px);
+            padding: 4rem 0;
         }
 
         .section.active {
             display: block;
         }
 
+        /* Hero Section */
         .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 100px);
             text-align: center;
-            padding: 6rem 0;
             position: relative;
         }
 
-        .hero h1 {
-            font-size: clamp(3rem, 6vw, 4.5rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: var(--gradient);
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-gold);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1.1;
         }
 
-        .hero .subtitle {
-            font-size: clamp(1.25rem, 3vw, 1.75rem);
-            color: var(--accent);
-            margin-bottom: 2rem;
+        .hero-content .subtitle {
+            font-size: clamp(1.2rem, 4vw, 2rem);
             font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 2rem;
         }
 
-        .hero .description {
+        .hero-content .description {
             font-size: 1.2rem;
-            color: var(--text-secondary);
+            color: var(--text-medium);
             max-width: 700px;
             margin: 0 auto 3rem;
             line-height: 1.8;
         }
 
-        .products-intro {
+        .description-list {
+            list-style: none;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .description-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .description-list li::before {
+            content: '•';
+            color: var(--primary-gold);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -0.1rem;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 6rem 0;
+        }
+
+        .section-title {
             text-align: center;
             margin-bottom: 4rem;
         }
 
-        .products-intro h2 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: var(--gradient);
+        .section-title h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            background: var(--gradient-gold);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            margin-bottom: 1rem;
         }
 
-        .products-intro p {
+        .section-title p {
             font-size: 1.3rem;
-            color: var(--text-secondary);
+            color: var(--text-medium);
             max-width: 800px;
             margin: 0 auto;
-            line-height: 1.7;
         }
 
-        .product-item {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
+        /* Product Cards */
+        .products-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--black-light);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            margin-bottom: 2rem;
+            border-radius: 16px;
             overflow: hidden;
             transition: all 0.4s ease;
-            position: relative;
+            cursor: pointer;
         }
 
-        .product-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: var(--gradient);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .product-item:hover {
+        .product-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .product-item:hover::before {
-            opacity: 1;
+            border-color: var(--primary-gold);
+            box-shadow: var(--shadow);
         }
 
         .product-header {
             padding: 2.5rem;
-            cursor: pointer;
+            border-bottom: 1px solid var(--border);
             position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .product-header:hover {
-            background: rgba(255, 255, 255, 0.02);
         }
 
         .product-header h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
             margin-bottom: 1rem;
-            color: var(--text-primary);
             line-height: 1.3;
         }
 
         .product-header p {
-            color: var(--text-secondary);
             font-size: 1.1rem;
+            color: var(--text-medium);
             line-height: 1.6;
         }
 
-        .toggle-icon {
+        .expand-icon {
             position: absolute;
+            top: 2.5rem;
             right: 2.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--primary-gold);
             border-radius: 50%;
-            background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
-            color: white;
-            transition: all 0.4s ease;
-            font-weight: 300;
+            font-size: 1.2rem;
+            color: var(--primary-gold);
+            transition: all 0.3s ease;
         }
 
-        .product-item.active .toggle-icon {
-            transform: translateY(-50%) rotate(45deg);
-            background: var(--success);
+        .product-card.active .expand-icon {
+            transform: rotate(45deg);
+            background: var(--primary-gold);
+            color: var(--black);
         }
 
         .product-content {
             display: none;
-            padding: 0 2.5rem 2.5rem;
-            animation: fadeIn 0.4s ease;
+            padding: 2.5rem;
+            animation: slideDown 0.3s ease;
         }
 
-        .product-item.active .product-content {
+        .product-card.active .product-content {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .product-details {
-            margin-bottom: 3rem;
-        }
-
-        .challenge, .solution {
+        .content-section {
             margin-bottom: 2.5rem;
-            padding: 2rem;
-            border-radius: 16px;
-            position: relative;
         }
 
-        .challenge {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-        }
-
-        .solution {
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-        }
-
-        .challenge h4, .solution h4 {
-            font-size: 1.3rem;
-            font-weight: 600;
+        .content-section h4 {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            font-weight: 700;
             margin-bottom: 1rem;
-            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .challenge p, .solution p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-size: 1.05rem;
+        .content-section p {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 1rem;
         }
 
-        .tech-stack {
-            margin-bottom: 2rem;
-        }
-
-        .tech-stack h4 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .tech-tags {
+        .tech-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
+            gap: 0.8rem;
+            margin-top: 1rem;
         }
 
         .tech-tag {
-            background: var(--surface);
-            color: var(--accent);
-            padding: 0.75rem 1.25rem;
-            border-radius: 50px;
+            background: var(--black-medium);
+            color: var(--primary-gold);
+            border: 1px solid var(--border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
             font-size: 0.9rem;
             font-weight: 500;
-            border: 1px solid var(--border);
             transition: all 0.3s ease;
         }
 
         .tech-tag:hover {
-            background: var(--accent);
-            color: var(--background);
+            background: var(--primary-gold);
+            color: var(--black);
             transform: translateY(-2px);
         }
 
-        .product-metrics {
+        .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 2.5rem;
+            margin: 2rem 0;
         }
 
-        .metric {
+        .metric-item {
             text-align: center;
             padding: 1.5rem;
-            background: var(--surface);
-            border-radius: 16px;
+            background: var(--black-medium);
+            border-radius: 12px;
             border: 1px solid var(--border);
             transition: all 0.3s ease;
         }
 
-        .metric:hover {
+        .metric-item:hover {
+            border-color: var(--primary-gold);
             transform: translateY(-4px);
-            background: var(--surface-light);
         }
 
         .metric-number {
-            font-size: 2.25rem;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-gold);
             display: block;
             line-height: 1.2;
         }
 
         .metric-label {
-            font-size: 0.95rem;
-            color: var(--text-muted);
+            font-size: 0.9rem;
+            color: var(--text-medium);
             margin-top: 0.5rem;
             font-weight: 500;
         }
 
-        .product-links {
-            text-align: center;
-        }
-
-        .demo-link {
+        .demo-button {
             display: inline-block;
-            background: var(--gradient);
-            color: white;
+            background: var(--gradient-gold);
+            color: var(--black);
             padding: 1rem 2.5rem;
-            text-decoration: none;
             border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.05rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .demo-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .demo-link:hover::before {
-            left: 100%;
-        }
-
-        .demo-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
-        }
-
-        .contact {
-            text-align: center;
-            padding: 6rem 0;
-            position: relative;
-        }
-
-        .contact h2 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            text-decoration: none;
             font-weight: 700;
-            margin-bottom: 3rem;
-            background: var(--gradient);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .demo-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 100px);
+            text-align: center;
+        }
+
+        .contact-content h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            background: var(--gradient-gold);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            margin-bottom: 3rem;
         }
 
         .contact-links {
@@ -452,55 +408,51 @@
             flex-wrap: wrap;
         }
 
-        .contact-links a {
-            display: inline-block;
-            background: var(--surface);
-            color: var(--text-primary);
-            padding: 1.25rem 2.5rem;
-            text-decoration: none;
+        .contact-link {
+            background: var(--black-light);
+            color: var(--white);
+            padding: 1.2rem 2.5rem;
             border-radius: 50px;
+            text-decoration: none;
             font-weight: 600;
-            font-size: 1.05rem;
-            border: 1px solid var(--border);
+            font-size: 1.1rem;
+            border: 2px solid var(--border);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .contact-links a::before {
+        .contact-link::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            width: 0;
+            left: -100%;
+            width: 100%;
             height: 100%;
-            background: var(--gradient);
-            transition: width 0.3s ease;
+            background: var(--gradient-gold);
+            transition: left 0.3s ease;
             z-index: -1;
         }
 
-        .contact-links a:hover::before {
-            width: 100%;
+        .contact-link:hover {
+            color: var(--black);
+            border-color: var(--primary-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.2);
         }
 
-        .contact-links a:hover {
-            transform: translateY(-4px);
-            border-color: transparent;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        .contact-link:hover::before {
+            left: 0;
         }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
             .nav-links {
-                gap: 1.5rem;
-            }
-
-            .nav-link {
-                font-size: 0.9rem;
-            }
-
-            .hero {
-                padding: 4rem 0;
+                gap: 2rem;
             }
 
             .product-header {
@@ -508,24 +460,12 @@
             }
 
             .product-content {
-                padding: 0 2rem 2rem;
+                padding: 2rem;
             }
 
-            .toggle-icon {
+            .expand-icon {
+                top: 2rem;
                 right: 2rem;
-                width: 35px;
-                height: 35px;
-                font-size: 1.1rem;
-            }
-
-            .challenge, .solution {
-                padding: 1.5rem;
-                margin-bottom: 2rem;
-            }
-
-            .product-metrics {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 1rem;
             }
 
             .contact-links {
@@ -533,36 +473,36 @@
                 align-items: center;
             }
 
-            .contact-links a {
+            .contact-link {
                 width: 100%;
                 max-width: 300px;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 0 16px;
+                padding: 0 1rem;
             }
 
-            .hero {
+            .hero,
+            .products-section,
+            .contact-section {
                 padding: 3rem 0;
-            }
-
-            .products-intro {
-                margin-bottom: 3rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="background-pattern"></div>
-    
     <header>
         <nav class="container">
             <div class="logo">Marco Predovic</div>
             <ul class="nav-links">
                 <li><a href="#" class="nav-link active" data-section="about">About</a></li>
-                <li><a href="#" class="nav-link" data-section="products">AI Products</a></li>
+                <li><a href="#" class="nav-link" data-section="products">Products</a></li>
                 <li><a href="#" class="nav-link" data-section="contact">Contact</a></li>
             </ul>
         </nav>
@@ -571,42 +511,48 @@
     <main class="container">
         <!-- About Section -->
         <section id="about" class="section hero active">
-            <h1>Marco Predovic</h1>
-            <div class="subtitle">Product Strategist & AI Application Developer</div>
-            <div class="description">
-                Passionate about building AI-powered solutions that solve real business challenges and drive measurable outcomes. Currently seeking Product/AI roles at innovative companies where data-driven decision making and user-centered design principles create lasting impact.
+            <div class="hero-content">
+                <h1>Marco Predovic</h1>
+                <div class="subtitle">Product Strategist & AI Application Developer</div>
+                <div class="description">
+                    <ul class="description-list">
+                        <li>All about product, data, and AI development</li>
+                        <li>Passionate about building AI-powered solutions that solve real business challenges and drive measurable outcomes</li>
+                        <li>Currently seeking Product/AI roles at innovative companies</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
         <!-- Products Section -->
-        <section id="products" class="section">
-            <div class="products-intro">
+        <section id="products" class="section products-section">
+            <div class="section-title">
                 <h2>AI Products</h2>
                 <p>Building AI-powered solutions that solve real business challenges and deliver measurable outcomes</p>
             </div>
 
-            <!-- FreightFlow AI Project -->
-            <div class="product-item">
-                <div class="product-header" onclick="toggleProduct(this)">
-                    <h3>FreightFlow AI: Intelligent Freight Coordination Platform</h3>
-                    <p>Automating freight coordination with AI-powered routing and cost optimization for lumber mills</p>
-                    <span class="toggle-icon">+</span>
-                </div>
-                <div class="product-content">
-                    <div class="product-details">
-                        <div class="challenge">
+            <div class="products-grid">
+                <!-- FreightFlow AI -->
+                <div class="product-card" onclick="toggleProduct(this)">
+                    <div class="product-header">
+                        <div class="expand-icon">+</div>
+                        <h3>FreightFlow AI: Intelligent Freight Coordination Platform</h3>
+                        <p>Automating freight coordination with AI-powered routing and cost optimization for lumber mills</p>
+                    </div>
+                    <div class="product-content">
+                        <div class="content-section">
                             <h4>Challenge</h4>
                             <p>Freight coordination is complex, expensive, and heavily manual. Companies struggle with inefficient routing, carrier selection, and cost optimization across multiple shipments.</p>
                         </div>
                         
-                        <div class="solution">
+                        <div class="content-section">
                             <h4>Solution</h4>
                             <p>Built an AI-powered platform that automates freight coordination using Claude API for intelligent routing decisions, dynamic pricing simulation, and industry-specific workflows tailored for lumber mills.</p>
                         </div>
                         
-                        <div class="tech-stack">
+                        <div class="content-section">
                             <h4>Technology Stack</h4>
-                            <div class="tech-tags">
+                            <div class="tech-grid">
                                 <span class="tech-tag">Next.js</span>
                                 <span class="tech-tag">TypeScript</span>
                                 <span class="tech-tag">Claude API</span>
@@ -614,53 +560,49 @@
                                 <span class="tech-tag">AI Routing</span>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="product-metrics">
-                        <div class="metric">
-                            <div class="metric-number">18-25%</div>
-                            <div class="metric-label">Cost Savings</div>
+                        
+                        <div class="metrics-grid">
+                            <div class="metric-item">
+                                <div class="metric-number">18-25%</div>
+                                <div class="metric-label">Cost Savings</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-number">Real-time</div>
+                                <div class="metric-label">AI Routing</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-number">End-to-end</div>
+                                <div class="metric-label">Platform</div>
+                            </div>
                         </div>
-                        <div class="metric">
-                            <div class="metric-number">Real-time</div>
-                            <div class="metric-label">AI Routing</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-number">End-to-end</div>
-                            <div class="metric-label">Platform</div>
-                        </div>
-                    </div>
-                    
-                    <div class="product-links">
-                        <a href="https://freightflow-ai-demo.vercel.app/" target="_blank" class="demo-link">
+                        
+                        <a href="https://freightflow-ai-demo.vercel.app/" target="_blank" class="demo-button">
                             View Live Demo →
                         </a>
                     </div>
                 </div>
-            </div>
 
-            <!-- KPI Analysis Agent Project -->
-            <div class="product-item">
-                <div class="product-header" onclick="toggleProduct(this)">
-                    <h3>KPI Data Insights Agent</h3>
-                    <p>Automated KPI analysis and strategic business reporting using no-code AI workflows</p>
-                    <span class="toggle-icon">+</span>
-                </div>
-                <div class="product-content">
-                    <div class="product-details">
-                        <div class="challenge">
+                <!-- KPI Analysis Agent -->
+                <div class="product-card" onclick="toggleProduct(this)">
+                    <div class="product-header">
+                        <div class="expand-icon">+</div>
+                        <h3>KPI Data Insights Agent</h3>
+                        <p>Automated KPI analysis and strategic business reporting using no-code AI workflows</p>
+                    </div>
+                    <div class="product-content">
+                        <div class="content-section">
                             <h4>Challenge</h4>
                             <p>Executive teams need weekly KPI reports and insights, but manual analysis is time-consuming and often delayed. Analysts spend hours on repetitive data interpretation tasks.</p>
                         </div>
                         
-                        <div class="solution">
+                        <div class="content-section">
                             <h4>Solution</h4>
                             <p>Built a no-code KPI analysis agent using n8n and GPT-4 that automatically connects to data sources, detects performance trends, and generates strategic business summaries with actionable recommendations delivered via email.</p>
                         </div>
                         
-                        <div class="tech-stack">
+                        <div class="content-section">
                             <h4>Technology Stack</h4>
-                            <div class="tech-tags">
+                            <div class="tech-grid">
                                 <span class="tech-tag">n8n</span>
                                 <span class="tech-tag">GPT-4</span>
                                 <span class="tech-tag">Google Sheets API</span>
@@ -668,47 +610,45 @@
                                 <span class="tech-tag">Data Analysis</span>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="product-metrics">
-                        <div class="metric">
-                            <div class="metric-number">Weekly</div>
-                            <div class="metric-label">Auto Reports</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-number">Zero</div>
-                            <div class="metric-label">Analyst Time</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-number">Multi-source</div>
-                            <div class="metric-label">Data Integration</div>
+                        
+                        <div class="metrics-grid">
+                            <div class="metric-item">
+                                <div class="metric-number">Weekly</div>
+                                <div class="metric-label">Auto Reports</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-number">Zero</div>
+                                <div class="metric-label">Analyst Time</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-number">Multi-source</div>
+                                <div class="metric-label">Data Integration</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- JourneyFlow Intelligence Platform Project -->
-            <div class="product-item">
-                <div class="product-header" onclick="toggleProduct(this)">
-                    <h3>JourneyFlow Intelligence Platform</h3>
-                    <p>Interactive sales enablement platform with AI-powered competitive analysis and ROI calculators</p>
-                    <span class="toggle-icon">+</span>
-                </div>
-                <div class="product-content">
-                    <div class="product-details">
-                        <div class="challenge">
+                <!-- JourneyFlow Intelligence -->
+                <div class="product-card" onclick="toggleProduct(this)">
+                    <div class="product-header">
+                        <div class="expand-icon">+</div>
+                        <h3>JourneyFlow Intelligence Platform</h3>
+                        <p>Interactive sales enablement platform with AI-powered competitive analysis and ROI calculators</p>
+                    </div>
+                    <div class="product-content">
+                        <div class="content-section">
                             <h4>Challenge</h4>
                             <p>Sales teams struggle to demonstrate complex customer journey orchestration and competitive positioning for marketing automation deals, especially with technical prospects.</p>
                         </div>
                         
-                        <div class="solution">
+                        <div class="content-section">
                             <h4>Solution</h4>
                             <p>Built an interactive sales enablement platform that simulates real-time customer journey orchestration with dynamic Mermaid visualizations, AI-powered competitive analysis against major MarTech competitors, and personalized ROI calculators.</p>
                         </div>
                         
-                        <div class="tech-stack">
+                        <div class="content-section">
                             <h4>Technology Stack</h4>
-                            <div class="tech-tags">
+                            <div class="tech-grid">
                                 <span class="tech-tag">React</span>
                                 <span class="tech-tag">Mermaid.js</span>
                                 <span class="tech-tag">AI Analysis</span>
@@ -716,47 +656,45 @@
                                 <span class="tech-tag">ROI Calculators</span>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="product-metrics">
-                        <div class="metric">
-                            <div class="metric-number">Dynamic</div>
-                            <div class="metric-label">Visualization</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-number">AI-Powered</div>
-                            <div class="metric-label">Competitive Analysis</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-number">Personalized</div>
-                            <div class="metric-label">ROI Calculators</div>
+                        
+                        <div class="metrics-grid">
+                            <div class="metric-item">
+                                <div class="metric-number">Dynamic</div>
+                                <div class="metric-label">Visualization</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-number">AI-Powered</div>
+                                <div class="metric-label">Analysis</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-number">Personalized</div>
+                                <div class="metric-label">ROI Calculators</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- ChallengeChamp Project -->
-            <div class="product-item">
-                <div class="product-header" onclick="toggleProduct(this)">
-                    <h3>ChallengeChamp: Social Sports Challenge Platform</h3>
-                    <p>Building social engagement tools for casual sports fans through friendly competition</p>
-                    <span class="toggle-icon">+</span>
-                </div>
-                <div class="product-content">
-                    <div class="product-details">
-                        <div class="challenge">
+                <!-- ChallengeChamp -->
+                <div class="product-card" onclick="toggleProduct(this)">
+                    <div class="product-header">
+                        <div class="expand-icon">+</div>
+                        <h3>ChallengeChamp: Social Sports Challenge Platform</h3>
+                        <p>Building social engagement tools for casual sports fans through friendly competition</p>
+                    </div>
+                    <div class="product-content">
+                        <div class="content-section">
                             <h4>Challenge</h4>
                             <p>Casual sports fans want to make games more exciting with friends, but current sports betting apps are intimidating, legally restrictive, or require immediate financial commitment. 85% of sports watchers never place bets, yet they engage in informal predictions and trash talk.</p>
                         </div>
                         
-                        <div class="solution">
+                        <div class="content-section">
                             <h4>Solution</h4>
-                            <p>Built a comprehensive social gaming platform enabling users to create custom sports challenges (Yes/No predictions, Over/Under bets, Player vs Player comparisons), share them with friends via unique links, and track performance through real-time leaderboards and streak mechanics. Features complete user authentication, social sharing, and challenge acceptance workflows designed to convert casual viewers into engaged gaming users.</p>
+                            <p>Built a comprehensive social gaming platform enabling users to create custom sports challenges (Yes/No predictions, Over/Under bets, Player vs Player comparisons), share them with friends via unique links, and track performance through real-time leaderboards and streak mechanics.</p>
                         </div>
                         
-                        <div class="tech-stack">
+                        <div class="content-section">
                             <h4>Technology Stack</h4>
-                            <div class="tech-tags">
+                            <div class="tech-grid">
                                 <span class="tech-tag">Next.js 14</span>
                                 <span class="tech-tag">TypeScript</span>
                                 <span class="tech-tag">Supabase</span>
@@ -764,25 +702,23 @@
                                 <span class="tech-tag">Real-time Database</span>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="product-metrics">
-                        <div class="metric">
-                            <div class="metric-number">3</div>
-                            <div class="metric-label">Challenge Types</div>
+                        
+                        <div class="metrics-grid">
+                            <div class="metric-item">
+                                <div class="metric-number">3</div>
+                                <div class="metric-label">Challenge Types</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-number">Real-time</div>
+                                <div class="metric-label">Social Features</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-number">Full-stack</div>
+                                <div class="metric-label">Platform</div>
+                            </div>
                         </div>
-                        <div class="metric">
-                            <div class="metric-number">Real-time</div>
-                            <div class="metric-label">Social Features</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-number">Full-stack</div>
-                            <div class="metric-label">Platform</div>
-                        </div>
-                    </div>
-                    
-                    <div class="product-links">
-                        <a href="https://challengechamp.lovable.app/" target="_blank" class="demo-link">
+                        
+                        <a href="https://challengechamp.lovable.app/" target="_blank" class="demo-button">
                             View Live Demo →
                         </a>
                     </div>
@@ -791,12 +727,14 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="section contact">
-            <h2>Find me anywhere</h2>
-            <div class="contact-links">
-                <a href="mailto:predovic08@gmail.com">Email</a>
-                <a href="https://linkedin.com/in/marcopredovic" target="_blank">LinkedIn</a>
-                <a href="tel:971-295-0555">Phone</a>
+        <section id="contact" class="section contact-section">
+            <div class="contact-content">
+                <h2>Find me anywhere</h2>
+                <div class="contact-links">
+                    <a href="mailto:predovic08@gmail.com" class="contact-link">Email</a>
+                    <a href="https://linkedin.com/in/marcopredovic" target="_blank" class="contact-link">LinkedIn</a>
+                    <a href="tel:971-295-0555" class="contact-link">Phone</a>
+                </div>
             </div>
         </section>
     </main>
@@ -819,26 +757,14 @@
             });
         });
 
-        // Product accordion functionality
-        function toggleProduct(header) {
-            const productItem = header.parentElement;
-            const allProducts = document.querySelectorAll('.product-item');
-            
-            allProducts.forEach(item => {
-                if (item !== productItem) {
-                    item.classList.remove('active');
-                }
+        // Product card toggle
+        function toggleProduct(card) {
+            const allCards = document.querySelectorAll('.product-card');
+            allCards.forEach(c => {
+                if (c !== card) c.classList.remove('active');
             });
-            
-            productItem.classList.toggle('active');
+            card.classList.toggle('active');
         }
-
-        // Smooth scrolling and enhanced interactions
-        document.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const background = document.querySelector('.background-pattern');
-            background.style.transform = `translateY(${scrolled * 0.5}px)`;
-        });
     </script>
 </body>
 </html>
