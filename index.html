@@ -4,7 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marco Predovic - Product Strategist & AI Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --background: #0f172a;
+            --surface: #1e293b;
+            --surface-light: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,67 +30,103 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #f8fafc;
+            color: var(--text-primary);
+            background: var(--background);
+            overflow-x: hidden;
+        }
+
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(120, 200, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
         header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid var(--border);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 1.5rem 0;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #2563eb;
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .nav-link {
             text-decoration: none;
-            color: #64748b;
+            color: var(--text-secondary);
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
             cursor: pointer;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
 
         .nav-link:hover,
         .nav-link.active {
-            color: #2563eb;
+            color: var(--text-primary);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
         }
 
         main {
-            margin-top: 80px;
+            margin-top: 100px;
             padding: 2rem 0;
         }
 
         .section {
             display: none;
-            padding: 2rem 0;
+            padding: 3rem 0;
         }
 
         .section.active {
@@ -81,159 +135,260 @@
 
         .hero {
             text-align: center;
-            padding: 4rem 0;
+            padding: 6rem 0;
+            position: relative;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #1e293b;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
         }
 
         .hero .subtitle {
-            font-size: 1.5rem;
-            color: #2563eb;
-            margin-bottom: 1rem;
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 600;
         }
 
         .hero .description {
-            font-size: 1.1rem;
-            color: #64748b;
-            max-width: 600px;
-            margin: 0 auto 2rem;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
         }
 
         .products-intro {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .products-intro h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #1e293b;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .products-intro p {
-            font-size: 1.2rem;
-            color: #64748b;
+            font-size: 1.3rem;
+            color: var(--text-secondary);
             max-width: 800px;
             margin: 0 auto;
+            line-height: 1.7;
         }
 
         .product-item {
-            background: white;
-            border-radius: 12px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .product-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .product-item:hover::before {
+            opacity: 1;
         }
 
         .product-header {
-            padding: 2rem;
+            padding: 2.5rem;
             cursor: pointer;
             position: relative;
-            border-bottom: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .product-header:hover {
+            background: rgba(255, 255, 255, 0.02);
         }
 
         .product-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #1e293b;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            line-height: 1.3;
         }
 
         .product-header p {
-            color: #64748b;
+            color: var(--text-secondary);
             font-size: 1.1rem;
+            line-height: 1.6;
         }
 
         .toggle-icon {
             position: absolute;
-            right: 2rem;
+            right: 2.5rem;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 1.5rem;
-            color: #2563eb;
-            transition: transform 0.3s;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: white;
+            transition: all 0.4s ease;
+            font-weight: 300;
         }
 
         .product-item.active .toggle-icon {
             transform: translateY(-50%) rotate(45deg);
+            background: var(--success);
         }
 
         .product-content {
             display: none;
-            padding: 0 2rem 2rem;
+            padding: 0 2.5rem 2.5rem;
+            animation: fadeIn 0.4s ease;
         }
 
         .product-item.active .product-content {
             display: block;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .product-details {
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
         .challenge, .solution {
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            border-radius: 16px;
+            position: relative;
+        }
+
+        .challenge {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .solution {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
         .challenge h4, .solution h4 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
             margin-bottom: 1rem;
-            color: #1e293b;
+            color: var(--text-primary);
         }
 
         .challenge p, .solution p {
-            color: #64748b;
-            line-height: 1.7;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .tech-stack {
+            margin-bottom: 2rem;
         }
 
         .tech-stack h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: #1e293b;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
         }
 
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
 
         .tech-tag {
-            background: #eff6ff;
-            color: #2563eb;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            background: var(--surface);
+            color: var(--accent);
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 500;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: var(--accent);
+            color: var(--background);
+            transform: translateY(-2px);
         }
 
         .product-metrics {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
         }
 
         .metric {
             text-align: center;
-            flex: 1;
-            min-width: 120px;
+            padding: 1.5rem;
+            background: var(--surface);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .metric:hover {
+            transform: translateY(-4px);
+            background: var(--surface-light);
         }
 
         .metric-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #2563eb;
+            font-size: 2.25rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             display: block;
+            line-height: 1.2;
         }
 
         .metric-label {
-            font-size: 0.9rem;
-            color: #64748b;
+            font-size: 0.95rem;
+            color: var(--text-muted);
             margin-top: 0.5rem;
+            font-weight: 500;
         }
 
         .product-links {
@@ -242,28 +397,52 @@
 
         .demo-link {
             display: inline-block;
-            background: #2563eb;
+            background: var(--gradient);
             color: white;
-            padding: 1rem 2rem;
+            padding: 1rem 2.5rem;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 50px;
             font-weight: 600;
-            transition: background 0.3s;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .demo-link:hover::before {
+            left: 100%;
         }
 
         .demo-link:hover {
-            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
         }
 
         .contact {
             text-align: center;
-            padding: 4rem 0;
+            padding: 6rem 0;
+            position: relative;
         }
 
         .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #1e293b;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .contact-links {
@@ -275,44 +454,109 @@
 
         .contact-links a {
             display: inline-block;
-            background: #2563eb;
-            color: white;
-            padding: 1rem 2rem;
+            background: var(--surface);
+            color: var(--text-primary);
+            padding: 1.25rem 2.5rem;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 50px;
             font-weight: 600;
-            transition: background 0.3s;
+            font-size: 1.05rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .contact-links a:hover::before {
+            width: 100%;
         }
 
         .contact-links a:hover {
-            background: #1d4ed8;
+            transform: translateY(-4px);
+            border-color: transparent;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-
             .nav-links {
-                gap: 1rem;
+                gap: 1.5rem;
+            }
+
+            .nav-link {
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 4rem 0;
+            }
+
+            .product-header {
+                padding: 2rem;
+            }
+
+            .product-content {
+                padding: 0 2rem 2rem;
+            }
+
+            .toggle-icon {
+                right: 2rem;
+                width: 35px;
+                height: 35px;
+                font-size: 1.1rem;
+            }
+
+            .challenge, .solution {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
             }
 
             .product-metrics {
-                justify-content: center;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 1rem;
             }
 
             .contact-links {
                 flex-direction: column;
                 align-items: center;
             }
+
+            .contact-links a {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .products-intro {
+                margin-bottom: 3rem;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="background-pattern"></div>
+    
     <header>
         <nav class="container">
             <div class="logo">Marco Predovic</div>
@@ -330,9 +574,7 @@
             <h1>Marco Predovic</h1>
             <div class="subtitle">Product Strategist & AI Application Developer</div>
             <div class="description">
-                • All about product, data, and AI development<br>
-                • Passionate about building AI-powered solutions that solve real business challenges and drive measurable outcomes<br>
-                • Currently seeking Product/AI roles at innovative companies
+                Passionate about building AI-powered solutions that solve real business challenges and drive measurable outcomes. Currently seeking Product/AI roles at innovative companies where data-driven decision making and user-centered design principles create lasting impact.
             </div>
         </section>
 
@@ -369,6 +611,7 @@
                                 <span class="tech-tag">TypeScript</span>
                                 <span class="tech-tag">Claude API</span>
                                 <span class="tech-tag">Tailwind CSS</span>
+                                <span class="tech-tag">AI Routing</span>
                             </div>
                         </div>
                     </div>
@@ -386,6 +629,12 @@
                             <div class="metric-number">End-to-end</div>
                             <div class="metric-label">Platform</div>
                         </div>
+                    </div>
+                    
+                    <div class="product-links">
+                        <a href="https://freightflow-ai-demo.vercel.app/" target="_blank" class="demo-link">
+                            View Live Demo →
+                        </a>
                     </div>
                 </div>
             </div>
@@ -416,6 +665,7 @@
                                 <span class="tech-tag">GPT-4</span>
                                 <span class="tech-tag">Google Sheets API</span>
                                 <span class="tech-tag">Email Automation</span>
+                                <span class="tech-tag">Data Analysis</span>
                             </div>
                         </div>
                     </div>
@@ -463,6 +713,7 @@
                                 <span class="tech-tag">Mermaid.js</span>
                                 <span class="tech-tag">AI Analysis</span>
                                 <span class="tech-tag">Interactive UI</span>
+                                <span class="tech-tag">ROI Calculators</span>
                             </div>
                         </div>
                     </div>
@@ -484,7 +735,7 @@
                 </div>
             </div>
 
-            <!-- NEW: ChallengeChamp Project -->
+            <!-- ChallengeChamp Project -->
             <div class="product-item">
                 <div class="product-header" onclick="toggleProduct(this)">
                     <h3>ChallengeChamp: Social Sports Challenge Platform</h3>
@@ -551,7 +802,7 @@
     </main>
 
     <script>
-        // Simple navigation functionality
+        // Navigation functionality
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('.section');
@@ -559,12 +810,9 @@
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    // Remove active class from all links and sections
                     navLinks.forEach(l => l.classList.remove('active'));
                     sections.forEach(s => s.classList.remove('active'));
-                    // Add active class to clicked link
                     this.classList.add('active');
-                    // Show corresponding section
                     const targetSection = this.getAttribute('data-section');
                     document.getElementById(targetSection).classList.add('active');
                 });
@@ -575,15 +823,22 @@
         function toggleProduct(header) {
             const productItem = header.parentElement;
             const allProducts = document.querySelectorAll('.product-item');
-            // Close all other products
+            
             allProducts.forEach(item => {
                 if (item !== productItem) {
                     item.classList.remove('active');
                 }
             });
-            // Toggle current product
+            
             productItem.classList.toggle('active');
         }
+
+        // Smooth scrolling and enhanced interactions
+        document.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const background = document.querySelector('.background-pattern');
+            background.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
     </script>
 </body>
 </html>
